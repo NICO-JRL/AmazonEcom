@@ -9,7 +9,12 @@ namespace Library.eCommerce.Services
     {
         private ProductServiceProxy()
         {
-            Products = new List<Product?>();
+            Products = new List<Product?>
+            {
+                new Product{Id = 1, Name ="Product 1"},
+                new Product{Id = 2, Name ="Product 2"},
+                new Product{Id = 3, Name ="Product 3"}
+            };
             ShoppingCart = new List<Product?>();
         }
 
@@ -55,13 +60,15 @@ namespace Library.eCommerce.Services
             return product;
         }
 
-        public Product Delete(int id)
+        public Product? Delete(int id)
         {
-            var product = Products.FirstOrDefault(p => p?.Id == id);
-            if (product != null)
+            
+            if (id == 0)
             {
-                Products.Remove(product);
+                return null;
             }
+            Product? product = Products.FirstOrDefault(p => p?.Id == id);
+            Products.Remove(product);
             return product;
         }
 
