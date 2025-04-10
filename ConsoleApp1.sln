@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmazonEcom", "ConsoleApp1\A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.eCommerce", "Library.eCommerce\Library.eCommerce.csproj", "{91CF2EE1-8C2B-4324-A290-B42BCB7C4160}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maui.eCommerce", "Maui.eCommerce\Maui.eCommerce.csproj", "{AFB99C33-F487-4658-AC57-394381A9DAD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		{91CF2EE1-8C2B-4324-A290-B42BCB7C4160}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91CF2EE1-8C2B-4324-A290-B42BCB7C4160}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91CF2EE1-8C2B-4324-A290-B42BCB7C4160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFB99C33-F487-4658-AC57-394381A9DAD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFB99C33-F487-4658-AC57-394381A9DAD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFB99C33-F487-4658-AC57-394381A9DAD5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AFB99C33-F487-4658-AC57-394381A9DAD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFB99C33-F487-4658-AC57-394381A9DAD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFB99C33-F487-4658-AC57-394381A9DAD5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
