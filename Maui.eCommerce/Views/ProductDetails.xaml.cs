@@ -1,4 +1,4 @@
-using AmazonEcom.Models;
+using Maui.eCommerce.ViewModels;
 
 namespace Maui.eCommerce.Views;
 
@@ -7,7 +7,7 @@ public partial class ProductDetails : ContentPage
 	public ProductDetails()
 	{
 		InitializeComponent();
-		BindingContext = new Product();
+		BindingContext = new ProductViewModel();
 	}
 
     private void GoBackClicked(object sender, EventArgs e)
