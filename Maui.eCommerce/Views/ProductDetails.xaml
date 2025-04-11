@@ -5,10 +5,13 @@
              Title="ProductDetails">
     <VerticalStackLayout>
         <Label 
-            Text="PRODUCT DETAILS!"
+            Text="Name:"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-
+        <Entry
+            Text="{Binding Name}"
+            />
+        <Button Text="Ok" Clicked="OkClicked"/>
         <Button Text="Go Back" Clicked="GoBackClicked"/>
     </VerticalStackLayout>
 </ContentPage>
