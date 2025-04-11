@@ -72,6 +72,11 @@ namespace Library.eCommerce.Services
             return product;
         }
 
+        public Product? GetById(int id) 
+        {
+            return Products.FirstOrDefault(p => p.Id == id);
+        }
+
         public Product? AddToCart(int id, int quantity)
         {
             var product = Products.FirstOrDefault(p => p?.Id == id);
