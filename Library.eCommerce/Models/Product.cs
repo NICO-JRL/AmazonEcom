@@ -5,10 +5,16 @@ namespace AmazonEcom.Models
     public class Product
     {
         public int Id { get; set; }
+        
         public string? Name { get; set; }
-      
-
-        public string? Display => $"{Id}. {Name}";
+     
+        public string? Display
+        {
+            get
+            {
+                return $"{Id}. {Name}";
+            }
+        }
 
         public Product()
         {
