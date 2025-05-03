@@ -5,22 +5,18 @@
              Title="ProductDetails"
              NavigatedTo="ContentPage_NavigatedTo"
              >
-    <VerticalStackLayout>
-        <Label 
-            Text="Name:"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Entry
-            Text="{Binding Name}"
-            />
-        <Label 
-            Text="Quantity:"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Entry
-            Text="{Binding Quantity}"
-            />
-        <Button Text="Ok" Clicked="OkClicked"/>
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="Name:" />
+        <Entry Text="{Binding Product.Name}" />
+
+        <Label Text="Quantity:" />
+        <Entry Text="{Binding Product.Quantity}" Keyboard="Numeric" />
+
+        <Label Text="Price:" />
+        <Entry Text="{Binding Product.Price}" Keyboard="Numeric" />
+
+        <Button Text="Ok" Clicked="SaveClicked"/>
         <Button Text="Go Back" Clicked="GoBackClicked"/>
     </VerticalStackLayout>
+
 </ContentPage>

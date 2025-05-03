@@ -2,13 +2,116 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Maui.eCommerce.Views.Shopping"
-             Title="Shopping">
+             Title="ShoppingManagementView">
+
     <VerticalStackLayout>
-        <Label 
-            Text="SHOP!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        
-        <Button Text="Go Back" Clicked="GoBackClicked"/>
+        <Grid ColumnSpacing="20" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- STORE SECTION -->
+            <CollectionView Grid.Column="0"
+                            ItemsSource="{Binding Inventory}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0"
+                                   Text="{Binding Model.Id}"
+                                   VerticalOptions="Center" />
+
+                            <Label Grid.Column="1"
+                                   Text="{Binding Model.Product.Name}"
+                                   VerticalOptions="Center"
+                                   LineBreakMode="TailTruncation" />
+
+                            <Label Grid.Column="2"
+                                   Text="{Binding Model.Product.Price, StringFormat='${0:F2}'}"
+                                   VerticalOptions="Center" />
+
+                            <Label Grid.Column="3"
+                                   Text="x"
+                                   VerticalOptions="Center" />
+
+                            <Label Grid.Column="4"
+                                   Text="{Binding Model.Quantity}"
+                                   VerticalOptions="Center" />
+
+                            <Entry Grid.Column="5"
+                                   Placeholder="1"
+                                   Text="{Binding QuantityToAdd, Mode=TwoWay}"
+                                   Keyboard="Numeric"
+                                   WidthRequest="40"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+
+                            <Button Grid.Column="6"
+                                    Text="+"
+                                    Command="{Binding AddCommand}"
+                                    Clicked="InlineAddClicked" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- USER CART SECTION -->
+            <CollectionView Grid.Column="1"
+                            ItemsSource="{Binding ShoppingCart}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0"
+                                   Text="{Binding Model.Product.Name}"
+                                   VerticalOptions="Center"
+                                   LineBreakMode="TailTruncation" />
+
+                            <Label Grid.Column="1"
+                                   Text="{Binding Model.Product.Price, StringFormat='${0:F2}'}"
+                                   VerticalOptions="Center" />
+
+                            <Label Grid.Column="2"
+                                   Text="x"
+                                   VerticalOptions="Center" />
+
+                            <Label Grid.Column="3"
+                                   Text="{Binding Model.Quantity}"
+                                   VerticalOptions="Center" />
+
+                            <Button Grid.Column="4"
+                                    Text="-"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.RemoveFromCartCommand}"
+                                    CommandParameter="{Binding .}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <!-- NAVIGATION BUTTONS -->
+        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center" Margin="10">
+            <Button Text="Go Back" Clicked="GoBackClicked" />
+            <Button Text="Checkout" Clicked="CheckoutClicked" />
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
