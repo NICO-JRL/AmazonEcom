@@ -1,4 +1,5 @@
 ﻿using Maui.eCommerce.ViewModels;
+using Maui.eCommerce.Views;
 
 namespace Maui.eCommerce
 {
@@ -17,10 +18,21 @@ namespace Maui.eCommerce
             Shell.Current.GoToAsync("//InventoryManagement");
         }
 
-        private void ShoppingClicked(object sender, EventArgs e)
+        private void ShopClicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//Shopping");
+            Shell.Current.GoToAsync("//ShoppingManagement");
         }
-    }
 
+        private async void OpenTaxConfigClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TaxConfigPage());
+        }
+
+        private async void CheckoutClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//Checkout");
+        }
+
+    }
 }
+

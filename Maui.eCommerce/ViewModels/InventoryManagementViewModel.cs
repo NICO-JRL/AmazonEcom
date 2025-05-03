@@ -1,4 +1,5 @@
 ﻿using AmazonEcom.Models;
+using Library.eCommerce.Models;
 using Library.eCommerce.Services;
 using System;
 using System.Collections.Generic;
@@ -13,16 +14,16 @@ namespace Maui.eCommerce.ViewModels
 {
     public class InventoryManagementViewModel : INotifyPropertyChanged
     {
-        public Product? SelectedProduct { get; set; }
-        public string? Query {  get; set; }
+        public Item? SelectedProduct { get; set; }
+        public string? Query { get; set; }
         private ProductServiceProxy _svc = ProductServiceProxy.Current;
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public void NotifyPropertyChanged([CallerMemberName] string propertyname = "")
         {
-            if (propertyname is null) 
-            { 
+            if (propertyname is null)
+            {
                 throw new ArgumentNullException(nameof(propertyname));
             }
 
@@ -34,16 +35,25 @@ namespace Maui.eCommerce.ViewModels
             NotifyPropertyChanged(nameof(Products));
         }
 
-        public ObservableCollection<Product?> Products 
+        public async Task<bool> Search()
+        {
+            await _svc.Search(Query);
+            NotifyPropertyChanged(nameof(Products));
+            return true;
+        }
+
+        public ObservableCollection<Item?> Products
         {
             get
             {
-                var filteredList = _svc.Products.Where(p => p?.Name?.ToLower().Contains(Query?.ToLower() ?? string.Empty) ?? false);
-                return new ObservableCollection<Product?>(filteredList);
-            } 
+                var filteredList = _svc.Products
+                    .Where(p => p?.Product?.Name?.ToLower()
+                    .Contains(Query?.ToLower() ?? string.Empty) ?? false);
+                return new ObservableCollection<Item?>(filteredList);
+            }
         }
 
-        public Product? Delete()
+        public Item? Delete()
         {
             var item = _svc.Delete(SelectedProduct?.Id ?? 0);
             NotifyPropertyChanged("Products");
